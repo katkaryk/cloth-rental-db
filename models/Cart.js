@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const cartItemSchema = new Schema({
-  id: Number, // Assuming 'id' from your cartItems schema
+  id: Number,
   name: String,
   category: String,
   image: String,
@@ -13,7 +13,12 @@ const cartItemSchema = new Schema({
   old_price: Number,
   size: String,
   noOfDays: String,
-  quantity: Number
+  quantity: Number,
+  phoneNumber: Number,
+  postalCode: Number,
+  streetAddress: String,
+  townCity: String,
+  useBillingAddress: Boolean,
 });
 
 const cartSchema = new Schema({
