@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import { sendVerificationEmail } from '../utils/sendEmail.js';
 
-export const  register = async (req, res) => {
+export const register = async (req, res) => {
   const { username, email, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -47,7 +47,7 @@ export const login = async (req, res) => {
     if (!user.isVerified) return res.status(400).json({ message: 'Email not verified' });
 
     const token = jwt.sign({ id: user._id }, 'secretKey', { expiresIn: '1h' });
-    res.json({ token });
+    res.json({ token, userId: user._id });  // Include userId in the response
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
