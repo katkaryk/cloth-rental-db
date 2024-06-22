@@ -47,7 +47,7 @@ export const login = async (req, res) => {
     if (!user.isVerified) return res.status(400).json({ message: 'Email not verified' });
 
     const token = jwt.sign({ id: user._id }, 'secretKey', { expiresIn: '1h' });
-    res.json({ token, userId: user._id });  // Include userId in the response
+    res.json({ token, userId: user._id , username: user.username });  // Include userId in the response
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
